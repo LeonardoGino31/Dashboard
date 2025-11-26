@@ -3,17 +3,22 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import { Grid } from '@mui/material';
-
+import HeaderUI from './components/HeaderUI';
+import AlertUI from './components/AlertUI';
 
 function App() {
   return (
     <Grid container spacing={5} justifyContent="center" alignItems="center">
 
       {/* Encabezado */}
-      <Grid size={{ xs: 12, md: 12 }}>Elemento: Encabezado</Grid>
+      <Grid size={{ xs: 12, md: 12 }}><HeaderUI/></Grid>
 
       {/* Alertas */}
-      <Grid>Elemento: Alertas</Grid>
+      <Grid container justifyContent="right" alignItems="center">
+
+             <AlertUI description="No se preveen lluvias"/>
+
+         </Grid>
 
       {/* Selector */}
       <Grid size={{ xs: 12, md: 3  }}>Elemento: Selector</Grid>
