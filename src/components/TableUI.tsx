@@ -3,6 +3,10 @@ import Typography from '@mui/material/Typography'; // Importado para mensajes de
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import useFetchData from '../functions/useFetchData'; // Asegúrate de que la ruta de importación sea correcta
 
+interface TableUIProps {
+  selectedOption: string | null;
+}
+
 
 function formatDate(isoString: string) {
    const date = new Date(isoString);
@@ -57,8 +61,9 @@ const columns: GridColDef[] = [
    },
 ];
 
-export default function TableUI() {
-   const { data, loading, error } = useFetchData();
+export default function TableUI({ selectedOption }: TableUIProps) {
+  const { data, loading, error } = useFetchData(selectedOption);
+
 
    if (loading) {
       return (
@@ -69,12 +74,13 @@ export default function TableUI() {
    }
 
    if (error) {
-      return (
-         <Box sx={{ height: 400, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Typography color="error">Error: {error}</Typography>
-         </Box>
-      );
-   }
+  return (
+    <Box sx={{ height: 400, width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+       {/* Cambia {error} por {error.message} */}
+       <Typography color="error">Error: {error.message}</Typography>
+    </Box>
+  );
+}
 
    const hourlyData = data?.hourly;
    
